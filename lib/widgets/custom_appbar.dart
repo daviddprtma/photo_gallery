@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:photo_gallery/helpers/theme_provider.dart';
+import 'package:provider/provider.dart';
 
 class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
-  const CustomAppbar({super.key});
+  final Function(String query) search;
+  const CustomAppbar({super.key, required this.search});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +25,9 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
             width: MediaQuery.of(context).size.width * 0.55,
             child: SearchBar(
               controller: TextEditingController(),
-              onSubmitted: (value) {},
+              onSubmitted: (value) {
+                search(value);
+              },
               trailing: [
                 IconButton(icon: const Icon(Icons.search), onPressed: () {})
               ],
@@ -33,7 +38,12 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
       centerTitle: true,
       actions: [
         Center(
-          child: Switch(value: false, onChanged: (v) {}),
+          child: Switch(
+              value: Provider.of<ThemeProvider>(context).isDarkMode,
+              onChanged: (v) {
+                Provider.of<ThemeProvider>(context, listen: false)
+                    .toogleTheme(v);
+              }),
         )
       ],
     );
