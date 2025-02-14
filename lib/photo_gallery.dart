@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:photo_gallery/helpers/responsive.dart';
 import 'package:photo_gallery/models/image_model.dart';
 import 'package:photo_gallery/services/image_services.dart';
 import 'package:photo_gallery/widgets/custom_appbar.dart';
 import 'package:photo_gallery/widgets/footer.dart';
 import 'package:photo_gallery/widgets/image_card.dart';
+import 'package:photo_gallery/widgets/images_dialog.dart';
 import 'package:photo_gallery/widgets/skeleton_loader.dart';
 
 class PhotoGallery extends StatefulWidget {
@@ -19,6 +21,15 @@ class _PhotoGalleryState extends State<PhotoGallery> {
   String query = '';
   int pageIdx = 1;
   ScrollController _scrollController = ScrollController();
+
+  void showModelImage(int idx) {
+    showDialog(
+        barrierColor: Colors.black.withOpacity(0.8),
+        context: context,
+        builder: (context) {
+          return ImageDialog(imgs: _imgs, currentIdx: idx);
+        });
+  }
 
   @override
   void initState() {
@@ -66,8 +77,12 @@ class _PhotoGalleryState extends State<PhotoGallery> {
                 GridView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 4,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: Responsive.isMobile(context)
+                          ? 2
+                          : Responsive.isTablet(context)
+                              ? 3
+                              : 4,
                       crossAxisSpacing: 10,
                       mainAxisSpacing: 10),
                   itemCount: _imgs.isEmpty ? 12 : _imgs.length,
@@ -75,7 +90,9 @@ class _PhotoGalleryState extends State<PhotoGallery> {
                     return _imgs.isEmpty
                         ? const SkeletonLoader()
                         : ImageCard(
-                            imageData: _imgs[idx], idx: idx, pnTap: (int a) {});
+                            imageData: _imgs[idx],
+                            idx: idx,
+                            pnTap: showModelImage);
                   },
                 ),
                 SizedBox(

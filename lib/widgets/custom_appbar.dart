@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:photo_gallery/helpers/responsive.dart';
 import 'package:photo_gallery/helpers/theme_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -16,13 +17,15 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
               padding: const EdgeInsets.only(left: 5),
               child: Text("Photo Gallery",
                   style: GoogleFonts.playfairDisplay(
-                      fontSize: 24,
+                      fontSize: Responsive.isMobile(context) ? 18 : 24,
                       fontWeight: FontWeight.bold,
                       color: Colors.purple))),
           const SizedBox(width: 30),
           Flexible(
               child: SizedBox(
-            width: MediaQuery.of(context).size.width * 0.55,
+            width: Responsive.isMobile(context)
+                ? MediaQuery.of(context).size.width * 0.42
+                : MediaQuery.of(context).size.width * 0.55,
             child: SearchBar(
               controller: TextEditingController(),
               onSubmitted: (value) {
