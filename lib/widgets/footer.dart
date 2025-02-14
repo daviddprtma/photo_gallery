@@ -23,79 +23,67 @@ class Footer extends StatelessWidget {
             )
           ]),
       child: Center(
-        child: Column(
-          children: [
-            Text(
-              '@ $year All Rights Reserved',
-              style: GoogleFonts.titilliumWeb(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
+        child: Column(children: [
+          Text(
+            '@ $year All Rights Reserved',
+            style: GoogleFonts.titilliumWeb(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              IconButton(
+                onPressed: () {
+                  "https://www.instagram.com/daviddprtma/";
+                },
+                icon: Icon(
+                  Icons.image,
+                  color: Colors.grey[400],
+                ),
+                tooltip: "Instagram",
               ),
-            ),
-            const SizedBox(
-              height: 5,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.facebook,
-                      color: Colors.grey[400],
-                    )),
-                IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.link,
-                      color: Colors.grey[400],
-                    )),
-                IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.image,
-                      color: Colors.grey[400],
-                    )),
-                IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.video_library,
-                      color: Colors.grey[400],
-                    )),
-              ],
-            ),
-            const SizedBox(
-              height: 5,
-            ),
-            SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    TextButton(
-                        onPressed: () {},
-                        child: Text('About me',
-                            style:
-                                GoogleFonts.titilliumWeb(color: Colors.white))),
-                    TextButton(
-                        onPressed: () {},
-                        child: Text('Contact',
-                            style:
-                                GoogleFonts.titilliumWeb(color: Colors.white))),
-                    TextButton(
-                        onPressed: () {},
-                        child: Text('Privacy & Policy',
-                            style:
-                                GoogleFonts.titilliumWeb(color: Colors.white))),
-                    TextButton(
-                        onPressed: () {},
-                        child: Text('Terms & Conditions',
-                            style:
-                                GoogleFonts.titilliumWeb(color: Colors.white)))
-                  ],
-                ))
-          ],
-        ),
+              IconButton(
+                onPressed: () {
+                  "https://www.threads.net/@daviddprtma?xmt=AQGzSnLf8sMsuZKFwwQ7cpEiB5F6YERP85PmrGB1jCISV7Y";
+                },
+                icon: Icon(
+                  Icons.link,
+                  color: Colors.grey[400],
+                ),
+                tooltip: "Threads",
+              ),
+              IconButton(
+                onPressed: () {
+                  "https://www.youtube.com/@daviddprtma";
+                },
+                icon: Icon(
+                  Icons.video_collection,
+                  color: Colors.grey[400],
+                ),
+                tooltip: "Youtube",
+              ),
+              IconButton(
+                onPressed: () {
+                  "https://www.tiktok.com/@daviddprtma2812";
+                },
+                icon: Icon(
+                  Icons.tiktok,
+                  color: Colors.grey[400],
+                ),
+                tooltip: "Tiktok",
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+        ]),
       ),
     );
   }
